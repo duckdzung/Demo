@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk-8.0.442.06-hotspot">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="lib/hibernate-core-5.6.15.Final.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-validator-6.2.5.Final.jar"/>
+	<classpathentry kind="lib" path="lib/jakarta.servlet.jsp.jstl-api-1.2.7.jar"/>
+	<classpathentry kind="lib" path="lib/javax.persistence-api-2.2.jar"/>
+	<classpathentry kind="lib" path="lib/javax.servlet.jsp-api-2.3.3.jar"/>
+	<classpathentry kind="lib" path="lib/javax.servlet-api-4.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/jstl-1.2.jar"/>
+	<classpathentry kind="lib" path="lib/mssql-jdbc-9.2.1.jre8.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-api-1.7.36.jar"/>
+	<classpathentry kind="lib" path="lib/spring-aop-5.3.30.jar"/>
+	<classpathentry kind="lib" path="lib/spring-beans-5.3.30.jar"/>
+	<classpathentry kind="lib" path="lib/spring-boot-2.5.14.jar"/>
+	<classpathentry kind="lib" path="lib/spring-context-5.3.30.jar"/>
+	<classpathentry kind="lib" path="lib/spring-core-5.3.30.jar"/>
+	<classpathentry kind="lib" path="lib/spring-expression-5.3.30.jar"/>
+	<classpathentry kind="lib" path="lib/spring-jdbc-5.3.30.jar"/>
+	<classpathentry kind="lib" path="lib/spring-orm-5.3.30.jar"/>
+	<classpathentry kind="lib" path="lib/spring-tx-5.3.30.jar"/>
+	<classpathentry kind="lib" path="lib/spring-web-5.3.30.jar"/>
+	<classpathentry kind="lib" path="lib/spring-webmvc-5.3.30.jar"/>
+	<classpathentry kind="lib" path="lib/tomcat-embed-core-9.0.85.jar"/>
+	<classpathentry kind="lib" path="lib/tomcat-embed-jasper-9.0.85.jar"/>
+	<classpathentry kind="lib" path="lib/validation-api-2.0.1.Final.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="lib/spring-boot-autoconfigure-2.5.14.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-to-slf4j-2.17.2.jar"/>
+	<classpathentry kind="lib" path="lib/logback-classic-1.2.11.jar"/>
+	<classpathentry kind="lib" path="lib/jakarta.annotation-api-1.3.5.jar"/>
+	<classpathentry kind="lib" path="lib/ecj-4.6.1.jar"/>
+	<classpathentry kind="lib" path="lib/javax.el-api-3.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/el-ri-3.0.4.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
