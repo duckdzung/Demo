@@ -1,41 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk-8.0.442.06-hotspot">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="lib/hibernate-core-5.6.15.Final.jar"/>
-	<classpathentry kind="lib" path="lib/hibernate-validator-6.2.5.Final.jar"/>
-	<classpathentry kind="lib" path="lib/jakarta.servlet.jsp.jstl-api-1.2.7.jar"/>
-	<classpathentry kind="lib" path="lib/javax.persistence-api-2.2.jar"/>
-	<classpathentry kind="lib" path="lib/javax.servlet.jsp-api-2.3.3.jar"/>
-	<classpathentry kind="lib" path="lib/javax.servlet-api-4.0.1.jar"/>
-	<classpathentry kind="lib" path="lib/jstl-1.2.jar"/>
-	<classpathentry kind="lib" path="lib/mssql-jdbc-9.2.1.jre8.jar"/>
-	<classpathentry kind="lib" path="lib/slf4j-api-1.7.36.jar"/>
-	<classpathentry kind="lib" path="lib/spring-aop-5.3.30.jar"/>
-	<classpathentry kind="lib" path="lib/spring-beans-5.3.30.jar"/>
-	<classpathentry kind="lib" path="lib/spring-boot-2.5.14.jar"/>
-	<classpathentry kind="lib" path="lib/spring-context-5.3.30.jar"/>
-	<classpathentry kind="lib" path="lib/spring-core-5.3.30.jar"/>
-	<classpathentry kind="lib" path="lib/spring-expression-5.3.30.jar"/>
-	<classpathentry kind="lib" path="lib/spring-jdbc-5.3.30.jar"/>
-	<classpathentry kind="lib" path="lib/spring-orm-5.3.30.jar"/>
-	<classpathentry kind="lib" path="lib/spring-tx-5.3.30.jar"/>
-	<classpathentry kind="lib" path="lib/spring-web-5.3.30.jar"/>
-	<classpathentry kind="lib" path="lib/spring-webmvc-5.3.30.jar"/>
-	<classpathentry kind="lib" path="lib/tomcat-embed-core-9.0.85.jar"/>
-	<classpathentry kind="lib" path="lib/tomcat-embed-jasper-9.0.85.jar"/>
-	<classpathentry kind="lib" path="lib/validation-api-2.0.1.Final.jar"/>
-	<classpathentry kind="lib" path="lib/commons-logging-1.2.jar"/>
-	<classpathentry kind="lib" path="lib/spring-boot-autoconfigure-2.5.14.jar"/>
-	<classpathentry kind="lib" path="lib/log4j-to-slf4j-2.17.2.jar"/>
-	<classpathentry kind="lib" path="lib/logback-classic-1.2.11.jar"/>
-	<classpathentry kind="lib" path="lib/jakarta.annotation-api-1.3.5.jar"/>
-	<classpathentry kind="lib" path="lib/ecj-4.6.1.jar"/>
-	<classpathentry kind="lib" path="lib/javax.el-api-3.0.0.jar"/>
-	<classpathentry kind="lib" path="lib/el-ri-3.0.4.jar"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk-8.0.442.06-hotspot"/>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry exported="true" kind="lib" path="dependency/antlr-2.7.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/aspectjweaver-1.9.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/attoparser-2.0.5.RELEASE.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/byte-buddy-1.10.22.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/classmate-1.5.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/dom4j-2.1.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/hibernate-commons-annotations-5.1.2.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/HikariCP-4.0.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/istack-commons-runtime-3.0.12.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/jackson-annotations-2.12.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/jackson-core-2.12.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/jackson-databind-2.12.6.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/jackson-datatype-jdk8-2.12.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/jackson-datatype-jsr310-2.12.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/jackson-module-parameter-names-2.12.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/jakarta.activation-1.2.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/jakarta.annotation-api-1.3.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/jakarta.persistence-api-2.2.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/jakarta.transaction-api-1.3.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/jakarta.xml.bind-api-2.3.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/jandex-2.2.3.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/javassist-3.27.0-GA.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/jaxb-runtime-2.3.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/jboss-logging-3.4.3.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/jul-to-slf4j-1.7.36.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/log4j-api-2.17.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/log4j-to-slf4j-2.17.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/logback-classic-1.2.11.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/logback-core-1.2.11.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/lombok-1.18.24.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/slf4j-api-1.7.36.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/snakeyaml-1.28.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/spring-aop-5.3.20.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/spring-aspects-5.3.20.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/spring-beans-5.3.20.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/spring-boot-2.5.14.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/spring-boot-autoconfigure-2.5.14.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/spring-boot-devtools-2.5.14.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/spring-boot-starter-2.5.14.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/spring-boot-starter-aop-2.5.14.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/spring-boot-starter-json-2.5.14.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/spring-boot-starter-logging-2.5.14.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/spring-boot-starter-thymeleaf-2.5.14.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/spring-boot-starter-tomcat-2.5.14.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/spring-boot-starter-web-2.5.14.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/spring-context-5.3.20.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/spring-core-5.3.20.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/spring-data-commons-2.5.11.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/spring-expression-5.3.20.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/spring-jcl-5.3.20.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/spring-orm-5.3.20.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/spring-tx-5.3.20.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/spring-web-5.3.20.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/spring-webmvc-5.3.20.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/thymeleaf-3.0.15.RELEASE.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/thymeleaf-extras-java8time-3.0.4.RELEASE.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/thymeleaf-spring5-3.0.15.RELEASE.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/tomcat-embed-core-9.0.63.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/tomcat-embed-el-9.0.63.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/tomcat-embed-websocket-9.0.63.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/txw2-2.3.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="dependency/unbescape-1.1.6.RELEASE.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
