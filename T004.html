@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Import CSV - Quản lý Khách hàng</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+    <h1>Import CSV - Quản lý Khách hàng</h1>
+
+    <!-- Form chọn file CSV -->
+    <form th:action="@{/import/upload}" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".csv">
+        <button type="submit">Import</button>
+        <button type="button" onclick="location.href='/customers'">Cancel</button>
+    </form>
+
+    <!-- Hiển thị thông báo lỗi hoặc kết quả -->
+    <div th:if="${message}" th:text="${message}" style="color: red;"></div>
+
+    <!-- Hiển thị kết quả import -->
+    <div th:if="${importResult}">
+        <p th:text="|Số dòng thêm mới: ${importResult.added}|"></p>
+        <p th:text="|Số dòng cập nhật: ${importResult.updated}|"></p>
+        <p th:text="|Số dòng lỗi: ${importResult.errors}|"></p>
+        <a th:if="${importResult.errorFile}" th:href="@{/import/errors}" download>Download file lỗi</a>
+    </div>
+</body>
+
+</html>
