@@ -14,3 +14,29 @@ public class ReflectionUtils {
 
 <td th:each="column : ${T(com.example.constants.CustomerConstants).COLUMN_MAPPING['default']}" 
     th:text="${T(com.example.utils.ReflectionUtils).getFieldValue(customer, column)}"></td>
+import com.opencsv.bean.CsvToBean;
+import com.opencsv.bean.CsvToBeanBuilder;
+import java.io.*;
+import java.nio.file.*;
+import java.util.List;
+
+public class CsvReaderService {
+    public List<Customer> readCustomersFromCsv(String filePath) throws IOException {
+        try (Reader reader = Files.newBufferedReader(Paths.get(filePath))) {
+            CsvToBean<Customer> csvToBean = new CsvToBeanBuilder<Customer>(reader)
+                    .withType(Customer.class)
+                    .withIgnoreLeadingWhiteSpace(true)
+                    .build();
+
+            return csvToBean.parse();
+        }
+    }
+}
+public static void main(String[] args) throws IOException {
+    CsvReaderService csvService = new CsvReaderService();
+    List<Customer> customers = csvService.readCustomersFromCsv("src/main/resources/customers.csv");
+
+    for (Customer c : customers) {
+        System.out.println(c.getName() + " - " + c.getEmail());
+    }
+}
