@@ -1,0 +1,16 @@
+import java.lang.reflect.Field;
+
+public class ReflectionUtils {
+    public static Object getFieldValue(Object obj, String fieldName) {
+        try {
+            Field field = obj.getClass().getDeclaredField(fieldName);
+            field.setAccessible(true);
+            return field.get(obj);
+        } catch (Exception e) {
+            return "N/A"; // Trả về "N/A" nếu không tìm thấy field
+        }
+    }
+}
+
+<td th:each="column : ${T(com.example.constants.CustomerConstants).COLUMN_MAPPING['default']}" 
+    th:text="${T(com.example.utils.ReflectionUtils).getFieldValue(customer, column)}"></td>
