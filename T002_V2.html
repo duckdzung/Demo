@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Quản lý Khách hàng</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Ô nhập liệu tìm kiếm -->
+    <input type="text" id="name" placeholder="Tên">
+    <select id="sex">
+        <option value="">-- Giới tính --</option>
+        <option value="Male">Nam</option>
+        <option value="Female">Nữ</option>
+    </select>
+    <input type="date" id="birthdayFrom">
+    <input type="date" id="birthdayTo">
+    <button id="searchBtn">Tìm kiếm</button>
+
+    <!-- Bảng khách hàng -->
+    <table id="customerTable" class="display">
+        <thead>
+            <tr>
+                <th th:each="column : ${session.columns}" th:data-column="${column.key}" th:text="${column.label}"></th>
+            </tr>
+        </thead>
+    </table>
+
+    <!-- Phân trang -->
+    <div id="pagination">
+        <button id="prevPage">« Trang trước</button>
+        <span id="pageNumbers"></span>
+        <button id="nextPage">Trang sau »</button>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            let pageSize = 10;
+            let currentPage = 1;
+            let totalRecords = 0;
+
+            let columnDefs = [];
+            $('#customerTable thead th').each(function () {
+                columnDefs.push({ data: $(this).attr("data-column") });
+            });
+
+            let table = $('#customerTable').DataTable({
+                processing: true,
+                serverSide: true,
+                paging: false, // Tắt phân trang mặc định
+                searching: false, // Không cần tìm kiếm nội bộ vì sẽ tìm trên server
+                ordering: false, // Order sẽ do server xử lý
+                ajax: function (data, callback) {
+                    let start = (currentPage - 1) * pageSize;
+
+                    $.ajax({
+                        url: '/customers/search',
+                        type: 'GET',
+                        data: {
+                            name: $('#name').val(),
+                            sex: $('#sex').val(),
+                            birthdayFrom: $('#birthdayFrom').val(),
+                            birthdayTo: $('#birthdayTo').val(),
+                            start: start,
+                            length: pageSize
+                        },
+                        success: function (response) {
+                            totalRecords = response.recordsTotal;
+                            callback({ data: response.data });
+                            updatePagination();
+                        }
+                    });
+                },
+                columns: columnDefs
+            });
+
+            function updatePagination() {
+                let totalPages = Math.ceil(totalRecords / pageSize);
+                let paginationHtml = '';
+
+                for (let i = 1; i <= totalPages; i++) {
+                    paginationHtml += `<button class="pageBtn" data-page="${i}">${i}</button> `;
+                }
+
+                $('#pageNumbers').html(paginationHtml);
+                $('.pageBtn').click(function () {
+                    currentPage = $(this).data('page');
+                    table.ajax.reload();
+                });
+
+                $('#prevPage').prop('disabled', currentPage === 1);
+                $('#nextPage').prop('disabled', currentPage === totalPages);
+            }
+
+            $('#searchBtn').click(function () {
+                currentPage = 1;
+                table.ajax.reload();
+            });
+
+            $('#prevPage').click(function () {
+                if (currentPage > 1) {
+                    currentPage--;
+                    table.ajax.reload();
+                }
+            });
+
+            $('#nextPage').click(function () {
+                let totalPages = Math.ceil(totalRecords / pageSize);
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    table.ajax.reload();
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
