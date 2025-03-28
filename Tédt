@@ -1,33 +1,5 @@
-var $select = $('#mySelect');
-
-// Move Up
-$('#btnUp').click(function() {
-    var $selected = $select.find('option:selected');
-    var $first = $selected.first();
-    var $prev = $first.prev('option');
-    if ($prev.length) {
-        $selected.insertBefore($prev);
-    }
-});
-
-// Move Down
-$('#btnDown').click(function() {
-    var $selected = $select.find('option:selected');
-    var $last = $selected.last();
-    var $next = $last.next('option');
-    if ($next.length) {
-        $selected.insertAfter($next);
-    }
-});
-
-// Move To Top
-$('#btnTop').click(function() {
-    var $selected = $select.find('option:selected');
-    $selected.prependTo($select);
-});
-
-// Move To Bottom
-$('#btnBottom').click(function() {
-    var $selected = $select.find('option:selected');
-    $selected.appendTo($select);
-});
+spring.jpa.properties.hibernate.jdbc.batch_size=50
+spring.jpa.properties.hibernate.order_inserts=true
+spring.jpa.properties.hibernate.order_updates=true
+spring.jpa.properties.hibernate.batch_versioned_data=true
+spring.jpa.properties.hibernate.jdbc.batch_mode=enabled
