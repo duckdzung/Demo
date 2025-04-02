@@ -1,199 +1,272 @@
-# Hướng Dẫn Sử Dụng jQuery (Phần 1, 2 & 3)
+Tôi sẽ đi sâu vào từng phần của Selenium với JavaScript, cung cấp đầy đủ thông tin, ví dụ và giải thích chi tiết nhất.
 
-## 1. Giới Thiệu về jQuery
+---
 
-### jQuery là gì?
+# **Phần 1: Giới Thiệu Về Selenium WebDriver**
 
-jQuery là một thư viện JavaScript nhanh, nhỏ gọn và giàu tính năng. Nó giúp dễ dàng thao tác với HTML, xử lý sự kiện, tạo hiệu ứng động và thực hiện Ajax với API đơn giản.
+## **1. Selenium Là Gì?**
 
-### Tại sao sử dụng jQuery?
+Selenium là một bộ công cụ mã nguồn mở được sử dụng để tự động hóa kiểm thử ứng dụng web trên các trình duyệt khác nhau. Nó hỗ trợ nhiều ngôn ngữ lập trình, bao gồm:
 
-- **Dễ sử dụng**: Cú pháp ngắn gọn và đơn giản hơn so với JavaScript thuần.
-- **Tương thích trình duyệt**: jQuery giúp xử lý các vấn đề tương thích giữa các trình duyệt.
-- **Hiệu suất cao**: Thao tác DOM và Ajax nhanh chóng.
-- **Thư viện mở rộng**: Hỗ trợ nhiều plugin mở rộng.
+- **Java**
+- **Python**
+- **C#**
+- **JavaScript** (Chủ đề chính của chúng ta)
 
-## 2. Cách Nhúng jQuery vào Trang Web
+Selenium WebDriver giúp điều khiển trình duyệt giống như một người dùng thực sự bằng cách tương tác với các phần tử trên trang web.
 
-### 2.1. Nhúng từ CDN
+## **2. Các Thành Phần Chính Của Selenium**
 
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Nhúng jQuery</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  </head>
-  <body>
-    <h1>Xin chào jQuery</h1>
-  </body>
-</html>
+Selenium bao gồm 3 thành phần chính:
+
+### **a. Selenium WebDriver**
+
+- Cung cấp API để điều khiển trình duyệt web.
+- Không cần cài đặt một máy chủ trung gian như Selenium RC.
+- Hỗ trợ nhiều trình duyệt: Chrome, Firefox, Edge, Safari.
+
+### **b. Selenium IDE**
+
+- Là một extension của Chrome/Firefox để ghi lại các thao tác trên trình duyệt.
+- Không cần viết mã, phù hợp với những người mới bắt đầu.
+
+### **c. Selenium Grid**
+
+- Hỗ trợ chạy kiểm thử song song trên nhiều trình duyệt và thiết bị khác nhau.
+- Dùng để tối ưu hiệu suất kiểm thử.
+
+## **3. Selenium WebDriver Hoạt Động Như Thế Nào?**
+
+WebDriver hoạt động bằng cách gửi lệnh đến trình duyệt và nhận phản hồi từ trình duyệt.  
+Quá trình này bao gồm:
+
+1. **Lập trình viên viết mã** sử dụng Selenium WebDriver API.
+2. **WebDriver gửi lệnh đến trình duyệt** thông qua trình điều khiển (driver).
+3. **Trình duyệt thực hiện thao tác** và gửi phản hồi về WebDriver.
+4. **WebDriver trả về kết quả** cho chương trình test.
+
+### **Lưu đồ hoạt động của Selenium WebDriver:**
+
+```plaintext
+(Test Script) --> (WebDriver API) --> (Browser Driver) --> (Browser)
 ```
 
-### 2.2. Tải về và sử dụng offline
+---
 
-- Tải jQuery từ [jQuery.com](https://jquery.com/).
-- Lưu file `.js` vào thư mục dự án.
-- Nhúng file bằng thẻ `<script>`:
+# **Phần 2: Cài Đặt Môi Trường Selenium với JavaScript**
 
-```html
-<script src="js/jquery-3.6.0.min.js"></script>
+## **1. Cài Đặt Node.js**
+
+Selenium với JavaScript yêu cầu **Node.js** vì nó chạy trên môi trường Node.
+
+- Tải về từ [https://nodejs.org](https://nodejs.org)
+- Kiểm tra phiên bản sau khi cài đặt:
+  ```sh
+  node -v
+  npm -v
+  ```
+
+## **2. Tạo Dự Án Node.js**
+
+Tạo một thư mục mới:
+
+```sh
+mkdir selenium-js && cd selenium-js
+npm init -y
 ```
 
-## 3. Cú Pháp Cơ Bản của jQuery
+Tập tin `package.json` sẽ được tạo.
 
-Cú pháp chung của jQuery:
+## **3. Cài Đặt Selenium WebDriver**
+
+Cài Selenium WebDriver bằng npm:
+
+```sh
+npm install selenium-webdriver
+```
+
+Cài đặt trình điều khiển ChromeDriver:
+
+```sh
+npm install chromedriver
+```
+
+Nếu sử dụng Firefox, cài `geckodriver`:
+
+```sh
+npm install geckodriver
+```
+
+---
+
+# **Phần 3: Viết Chương Trình Đầu Tiên Với Selenium**
+
+## **1. Viết Script Selenium với JavaScript**
+
+Tạo file `test.js` và thêm đoạn mã sau:
 
 ```javascript
-$(selector).action();
+const { Builder, By, Key, until } = require("selenium-webdriver");
+
+async function test() {
+  let driver = await new Builder().forBrowser("chrome").build();
+
+  try {
+    await driver.get("https://www.google.com");
+    let searchBox = await driver.findElement(By.name("q"));
+    await searchBox.sendKeys("Selenium JavaScript", Key.RETURN);
+    await driver.wait(until.titleContains("Selenium JavaScript"), 5000);
+  } finally {
+    await driver.quit();
+  }
+}
+
+test();
 ```
 
-- `$`: Ký hiệu jQuery.
-- `selector`: Chọn phần tử HTML.
-- `action()`: Hành động thực hiện trên phần tử đó.
+## **2. Chạy Chương Trình**
+
+Chạy file bằng lệnh:
+
+```sh
+node test.js
+```
+
+Trình duyệt Chrome sẽ mở, nhập từ khóa vào Google và hiển thị kết quả.
+
+---
+
+# **Phần 4: Tìm Hiểu Các Thao Tác Chính Trong Selenium**
+
+## **1. Các Cách Tìm Phần Tử (Locators)**
+
+Trong Selenium, có nhiều cách tìm phần tử trên trang web:
+
+| Locator Type | Cách Viết                               |
+| ------------ | --------------------------------------- |
+| ID           | `By.id("element-id")`                   |
+| Name         | `By.name("element-name")`               |
+| Class        | `By.className("class-name")`            |
+| CSS Selector | `By.css("css-selector")`                |
+| XPath        | `By.xpath("//tag[@attribute='value']")` |
 
 Ví dụ:
 
 ```javascript
-$(document).ready(function () {
-  $("p").click(function () {
-    alert("Bạn vừa nhấn vào đoạn văn!");
-  });
-});
+let element = driver.findElement(By.id("username"));
 ```
 
-## 4. Chọn Phần Tử với jQuery Selectors
+## **2. Các Thao Tác Cơ Bản**
 
-jQuery cung cấp nhiều cách để chọn phần tử HTML giống như CSS.
+- **Nhập Dữ Liệu**:
+  ```javascript
+  await driver.findElement(By.name("q")).sendKeys("Selenium", Key.RETURN);
+  ```
+- **Nhấp Chuột**:
+  ```javascript
+  await driver.findElement(By.id("submit-button")).click();
+  ```
+- **Lấy Nội Dung Văn Bản**:
+  ```javascript
+  let text = await driver.findElement(By.className("message")).getText();
+  console.log(text);
+  ```
 
-| Cú pháp       | Mô tả                               | Ví dụ                             |
-| ------------- | ----------------------------------- | --------------------------------- |
-| `$("*")`      | Chọn tất cả phần tử                 | `$('*').hide();`                  |
-| `$("p")`      | Chọn tất cả thẻ `<p>`               | `$('p').hide();`                  |
-| `$(".class")` | Chọn tất cả phần tử có class        | `$('.btn').click();`              |
-| `$("#id")`    | Chọn phần tử theo id                | `$('#header').fadeOut();`         |
-| `$("ul li")`  | Chọn tất cả `<li>` bên trong `<ul>` | `$('ul li').css('color', 'red');` |
+---
 
-### 4.1. Chọn theo thuộc tính
+# **Phần 5: Điều Khiển Trình Duyệt**
+
+## **1. Điều Hướng**
 
 ```javascript
-$("input[type='text']").val("Hello!");
+await driver.get("https://www.example.com");
+await driver.navigate().refresh();
+await driver.navigate().back();
+await driver.navigate().forward();
 ```
 
-### 4.2. Chọn phần tử con
+## **2. Chụp Ảnh Màn Hình**
 
 ```javascript
-$("div > p").css("background-color", "yellow");
-```
-
-### 4.3. Chọn phần tử tiếp theo
-
-```javascript
-$("#myDiv + p").fadeOut();
-```
-
-## 5. Thao Tác với HTML
-
-### 5.1. Thay đổi nội dung
-
-- `.html()`: Lấy hoặc thay đổi nội dung HTML.
-- `.text()`: Lấy hoặc thay đổi văn bản.
-- `.val()`: Lấy hoặc thay đổi giá trị của input.
-
-Ví dụ:
-
-```javascript
-$("#btn").click(function () {
-  $("#content").html("<b>Nội dung mới</b>");
-});
-```
-
-### 5.2. Thêm phần tử vào trang
-
-- `.append()`: Thêm vào cuối phần tử.
-- `.prepend()`: Thêm vào đầu phần tử.
-- `.after()`: Thêm sau phần tử.
-- `.before()`: Thêm trước phần tử.
-
-### 5.3. Xóa phần tử
-
-- `.remove()`: Xóa phần tử.
-- `.empty()`: Xóa nội dung bên trong phần tử.
-
-## 6. Làm Việc với CSS bằng jQuery
-
-### 6.1. Thêm và xóa class
-
-- `.addClass()`: Thêm class vào phần tử.
-- `.removeClass()`: Xóa class khỏi phần tử.
-- `.toggleClass()`: Chuyển đổi class (bật/tắt).
-
-### 6.2. Thay đổi CSS trực tiếp
-
-- `.css()`: Thay đổi hoặc lấy giá trị thuộc tính CSS.
-
-## 7. Xử Lý Sự Kiện trong jQuery
-
-### 7.1. Các sự kiện phổ biến
-
-- `click()`, `dblclick()`, `mouseenter()`, `mouseleave()`, `keydown()`, `keyup()`, `change()`
-
-### 7.2. Gán sự kiện bằng `.on()`
-
-## 8. Hiệu Ứng Động trong jQuery
-
-### 8.1. Hiệu ứng hiển thị/ẩn
-
-- `.hide(speed)`, `.show(speed)`, `.toggle(speed)`
-
-### 8.2. Hiệu ứng mờ dần
-
-- `.fadeIn(speed)`, `.fadeOut(speed)`, `.fadeToggle(speed)`, `.fadeTo(speed, opacity)`
-
-### 8.3. Hiệu ứng trượt
-
-- `.slideDown(speed)`, `.slideUp(speed)`, `.slideToggle(speed)`
-
-## 9. AJAX với jQuery
-
-### 9.1. Gửi yêu cầu GET
-
-```javascript
-$.get("data.txt", function (data) {
-  $("#content").html(data);
-});
-```
-
-### 9.2. Gửi yêu cầu POST
-
-```javascript
-$.post("submit.php", { name: "John" }, function (response) {
-  alert("Phản hồi: " + response);
-});
-```
-
-### 9.3. Sử dụng `.ajax()`
-
-```javascript
-$.ajax({
-  url: "data.json",
-  type: "GET",
-  dataType: "json",
-  success: function (response) {
-    console.log(response);
-  },
-  error: function (xhr, status, error) {
-    console.log("Lỗi: " + error);
-  },
+await driver.takeScreenshot().then((image) => {
+  require("fs").writeFileSync("screenshot.png", image, "base64");
 });
 ```
 
 ---
 
-Hướng dẫn này đã hoàn tất với các phần:
+# **Phần 6: Chạy Kiểm Thử với Mocha**
 
-1. Giới thiệu, cú pháp cơ bản.
-2. Thao tác HTML, CSS, sự kiện.
-3. Hiệu ứng động và Ajax.
+## **1. Cài Đặt Mocha**
 
-Bạn có thể bắt đầu áp dụng jQuery vào dự án của mình ngay bây giờ! 🚀
+```sh
+npm install mocha chai
+```
+
+Thêm script vào `package.json`:
+
+```json
+"scripts": {
+  "test": "mocha"
+}
+```
+
+## **2. Viết Test Case**
+
+Tạo file `test.js`:
+
+```javascript
+const { Builder, By, Key, until } = require("selenium-webdriver");
+const { expect } = require("chai");
+
+describe("Google Search", function () {
+  let driver;
+
+  before(async function () {
+    driver = await new Builder().forBrowser("chrome").build();
+  });
+
+  after(async function () {
+    await driver.quit();
+  });
+
+  it("should search for Selenium JavaScript", async function () {
+    await driver.get("https://www.google.com");
+    let searchBox = await driver.findElement(By.name("q"));
+    await searchBox.sendKeys("Selenium JavaScript", Key.RETURN);
+    await driver.wait(until.titleContains("Selenium JavaScript"), 5000);
+
+    let title = await driver.getTitle();
+    expect(title).to.include("Selenium JavaScript");
+  });
+});
+```
+
+## **3. Chạy Test**
+
+```sh
+npm test
+```
+
+---
+
+# **Phần 7: Chạy Selenium Trên Docker**
+
+## **1. Cài Đặt Docker**
+
+Tải về từ [Docker](https://www.docker.com/) và cài đặt.
+
+## **2. Chạy Selenium Chrome**
+
+```sh
+docker run -d -p 4444:4444 selenium/standalone-chrome
+```
+
+## **3. Kết Nối WebDriver Với Docker**
+
+```javascript
+let driver = new Builder()
+  .forBrowser("chrome")
+  .usingServer("http://localhost:4444/wd/hub")
+  .build();
+```
